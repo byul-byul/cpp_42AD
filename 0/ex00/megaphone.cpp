@@ -6,31 +6,34 @@
 /*   By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 00:58:32 by bhajili           #+#    #+#             */
-/*   Updated: 2025/05/04 01:03:47 by bhajili          ###   ########.fr       */
+/*   Updated: 2025/09/13 10:00:16 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-
-#define DEFAULT_MSG	"* LOUD AND UNBEARABLE FEEDBACK NOISE *"
+# include <iostream>
+# include <cctype>
 
 void	megaphone(int ac, char **av)
 {
-	if (ac < 1)
-		std::cout << DEFAULT_MSG;
+	unsigned char	uc;
+	int				i;
+	int				j;
+
+	if (ac < 1 || !av || !*av)
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	else
 	{
-		while (*av)
+		i = 0;
+		while (av[i])
 		{
-			while (**av)
+			j = 0;
+			while (av[i][j])
 			{
-				if (std::islower(**av))
-					std::cout << (char)std::toupper(**av);
-				else
-					std::cout << **av;
-				(*av)++;
+				uc = static_cast<unsigned char>(av[i][j]);
+				std::cout << (char)std::toupper(uc);
+				j++;
 			}
-			av++;
+			i++;
 		}
 	}
 	std::cout << std::endl;

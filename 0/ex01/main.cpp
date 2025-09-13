@@ -6,7 +6,7 @@
 /*   By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:02:19 by bhajili           #+#    #+#             */
-/*   Updated: 2025/05/05 19:51:35 by bhajili          ###   ########.fr       */
+/*   Updated: 2025/09/13 11:40:18 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	myAwesomePhoneBook(PhoneBook& pb)
 	std::string	input;
 
 	welcomeMessage();
-	while (1)
+	while (TRUE)
 	{
 		std::cout << std::endl << "Enter your command: ";
 		if (!(std::getline(std::cin, input)))
