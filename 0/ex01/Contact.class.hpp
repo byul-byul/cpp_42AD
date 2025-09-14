@@ -6,7 +6,7 @@
 /*   By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 11:51:29 by bhajili           #+#    #+#             */
-/*   Updated: 2025/09/13 13:56:54 by bhajili          ###   ########.fr       */
+/*   Updated: 2025/09/14 11:21:43 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class	Contact
 		void			set_nick_name(const std::string& nick_name);
 		void			set_phone_number(const std::string& phone_number);
 		void			set_darkest_secret(const std::string& darkest_secret);
+
 		void			print_aligned(void);
 		void			print_contact_info(void);
 

@@ -6,15 +6,16 @@
 /*   By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:06:14 by bhajili           #+#    #+#             */
-/*   Updated: 2025/09/13 14:15:23 by bhajili          ###   ########.fr       */
+/*   Updated: 2025/09/14 11:21:07 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
 
+// ### Constructors & Destructors ###
+
 PhoneBook::PhoneBook(void)
 {
-	std::cout << "PhoneBook::PhoneBook was called!" << std::endl;
 	_contact_list_size = 0;
 	_last_updated_contact_index = -1;
 	return ;
@@ -22,13 +23,14 @@ PhoneBook::PhoneBook(void)
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "PhoneBook::~PhoneBook was called!" << std::endl;
 	return ;
 }
 
+
+// ############# public #############
+
 void	PhoneBook::add(void)
 {
-	std::cout << "PhoneBook::add() was called!" << std::endl;
 	std::string	label;
 
 	label = "";
@@ -46,7 +48,6 @@ void	PhoneBook::add(void)
 
 void	PhoneBook::search(void)
 {
-	std::cout << "PhoneBook::search() was called!" << std::endl;
 	size_t		i = 0;
 	std::string	input;
 	int			atoi;
@@ -68,10 +69,13 @@ void	PhoneBook::search(void)
 		return ;
 	atoi = ft::ft_atoi(input);
 	if (atoi > 0 && atoi < MAX_CONTACT_COUNT)
-		_contact_list[atoi].print_contact_info();
+		_contact_list[atoi - 1].print_contact_info();
 	else
 		std::cout << "Wrong index!" << std::endl;
 }
+
+
+// ############# private #############
 
 void	PhoneBook::_add_first_name(const std::string& value)
 {

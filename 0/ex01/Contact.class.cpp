@@ -6,23 +6,26 @@
 /*   By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 11:55:30 by bhajili           #+#    #+#             */
-/*   Updated: 2025/09/13 13:59:43 by bhajili          ###   ########.fr       */
+/*   Updated: 2025/09/14 11:20:12 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.class.hpp"
 
+// ### Constructors & Destructors ###
+
 Contact::Contact(void)
 {
-	std::cout << "Contact class constructor was called!" << std::endl;
 	return ;
 }
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact class destructor was called!" << std::endl;
 	return ;
 }
+
+
+// ############ setters #############
 
 void	Contact::set_first_name(const std::string& first_name)
 {
@@ -49,40 +52,8 @@ void	Contact::set_darkest_secret(const std::string& darkest_secret)
 	_darkest_secret = darkest_secret;
 }
 
-void	Contact::_print_aligned_field(const std::string& value)
-{
-	int	diff;
 
-	if (value.size() > max_print_len)
-		std::cout << _crop_line(value);
-	else
-	{
-		diff = max_print_len - value.size();
-		while (diff--)
-			std::cout << " ";
-		std::cout << value;
-	}
-}
-
-void	Contact::print_aligned(void)
-{
-	std::cout << "|";
-	_print_aligned_field(get_first_name());
-	std::cout << "|";
-	_print_aligned_field(get_last_name());
-	std::cout << "|";
-	_print_aligned_field(get_nick_name());
-	std::cout << "|";
-}
-
-void	Contact::print_contact_info(void)
-{
-	std::cout << "first name:\t" << get_first_name() << std::endl;
-	std::cout << "last name:\t" << get_last_name() << std::endl;
-	std::cout << "nick name:\t" << get_nick_name() << std::endl;
-	std::cout << "phone number:\t" << get_phone_number() << std::endl;
-	std::cout << "darkest secret:\t" << get_darkest_secret() << std::endl;
-}
+// ############ getters #############
 
 std::string	Contact::get_first_name(void)
 {
@@ -107,6 +78,47 @@ std::string	Contact::get_phone_number(void)
 std::string	Contact::get_darkest_secret(void)
 {
 	return (_darkest_secret);
+}
+
+
+// ############# public #############
+
+void	Contact::print_aligned(void)
+{
+	std::cout << "|";
+	_print_aligned_field(get_first_name());
+	std::cout << "|";
+	_print_aligned_field(get_last_name());
+	std::cout << "|";
+	_print_aligned_field(get_nick_name());
+	std::cout << "|";
+}
+
+void	Contact::print_contact_info(void)
+{
+	std::cout << "first name:\t" << get_first_name() << std::endl;
+	std::cout << "last name:\t" << get_last_name() << std::endl;
+	std::cout << "nick name:\t" << get_nick_name() << std::endl;
+	std::cout << "phone number:\t" << get_phone_number() << std::endl;
+	std::cout << "darkest secret:\t" << get_darkest_secret() << std::endl;
+}
+
+
+// ############# private #############
+
+void	Contact::_print_aligned_field(const std::string& value)
+{
+	int	diff;
+
+	if (value.size() > max_print_len)
+		std::cout << _crop_line(value);
+	else
+	{
+		diff = max_print_len - value.size();
+		while (diff--)
+			std::cout << " ";
+		std::cout << value;
+	}
 }
 
 std::string	Contact::_crop_line(const std::string& line)
