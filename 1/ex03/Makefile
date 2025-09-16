@@ -6,13 +6,16 @@
 #    By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/15 13:01:56 by bhajili           #+#    #+#              #
-#    Updated: 2025/09/16 13:36:52 by bhajili          ###   ########.fr        #
+#    Updated: 2025/09/16 13:37:44 by bhajili          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	brain
+NAME	=	violence
 SDIR	=	./
-SRCS	=	main.cpp
+SRCS	=	main.cpp \
+			Weapon.cpp \
+			HumanA.cpp \
+			HumanB.cpp
 
 ODIR	=	objs/
 OBJS	=	$(addprefix $(ODIR), $(SRCS:.cpp=.o))

@@ -6,10 +6,9 @@
 #    By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/15 13:01:56 by bhajili           #+#    #+#              #
-#    Updated: 2025/09/15 13:40:26 by bhajili          ###   ########.fr        #
+#    Updated: 2025/09/16 13:36:56 by bhajili          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME	=	zombie
 SDIR	=	./
