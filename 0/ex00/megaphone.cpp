@@ -30,7 +30,8 @@ void	megaphone(int ac, char **av)
 			while (av[i][j])
 			{
 				uc = static_cast<unsigned char>(av[i][j]);
-				std::cout << (char)std::toupper(uc);
+				
+				std::cout << static_cast<char>(std::toupper(uc));
 				j++;
 			}
 			i++;

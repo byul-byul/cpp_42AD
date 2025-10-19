@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
-#include "ft.namespace.hpp"
+# include "PhoneBook.hpp"
+# include "ft.namespace.hpp"
+# include <iostream>
 
 void	welcomeMessage(void)
 {
@@ -27,12 +28,12 @@ void	myAwesomePhoneBook(PhoneBook& pb)
 	std::string	input;
 
 	welcomeMessage();
-	while (TRUE)
+	while (true)
 	{
 		std::cout << std::endl << "Enter your command: ";
 		if (!(std::getline(std::cin, input)))
 			break ;
-		input = ft::ft_toupper(input);
+		ft::ft_toupper(input);
 		if (input == "EXIT")
 			break ;
 		else if (input == "ADD")

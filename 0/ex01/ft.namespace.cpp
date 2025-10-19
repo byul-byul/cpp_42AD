@@ -12,23 +12,23 @@
 
 #include "ft.namespace.hpp"
 
-int	ft::ft_isdigits(const std::string str)
+bool	ft::ft_isdigits(const std::string& str)
 {
-	for (size_t i = 0; i < str.size(); ++i)
-		if (!isdigit(str[i]))
-			return (0);
-	return (1);
+	for (std::size_t i = 0; i < str.size(); ++i)
+		if (!std::isdigit(static_cast<unsigned char>(str[i])))
+			return (false);
+	return (true);
 }
 
-int	ft::ft_isalphas(const std::string str)
+bool	ft::ft_isalphas(const std::string& str)
 {
-	for (size_t i = 0; i < str.size(); ++i)
-		if (!isalpha(str[i]))
-			return (0);
-	return (1);
+	for (std::size_t i = 0; i < str.size(); ++i)
+		if (!std::isalpha(static_cast<unsigned char>(str[i])))
+			return (false);
+	return (true);
 }
 
-int	ft::ft_atoi(const std::string str)
+int	ft::ft_atoi(const std::string& str)
 {
 	int	sum;
 	int	i;
@@ -53,9 +53,8 @@ int	ft::ft_atoi(const std::string str)
 	return (sign * sum);
 }
 
-std::string	ft::ft_toupper(std::string str)
+void	ft::ft_toupper(std::string& str)
 {
-	for (size_t i = 0; i < str.size(); ++i)
+	for (std::size_t i = 0; i < str.size(); ++i)
 		str[i] = toupper(str[i]);
-	return (str);
 }

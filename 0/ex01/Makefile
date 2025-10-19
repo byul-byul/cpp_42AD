@@ -13,8 +13,8 @@
 NAME	=	myAwesomePhoneBook
 SDIR	=	./
 SRCS	=	main.cpp \
-			PhoneBook.class.cpp \
-			Contact.class.cpp \
+			PhoneBook.cpp \
+			Contact.cpp \
 			ft.namespace.cpp
 
 ODIR	=	objs/

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.class.hpp                                  :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,16 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_CLASS_HPP
-# define CONTACT_CLASS_HPP
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 # include <string>
-# include <iostream>
 
-// # ifndef MAX_PRINT_LEN
-// #  define MAX_PRINT_LEN		10
-// # endif
-static const int	max_print_len = 10;
+enum { max_print_len = 10 };
 
 class	Contact
 {
@@ -27,11 +23,11 @@ class	Contact
 		 Contact(void);
 		~Contact(void);
 
-		std::string		get_first_name(void);
-		std::string		get_last_name(void);
-		std::string		get_nick_name(void);
-		std::string		get_phone_number(void);
-		std::string		get_darkest_secret(void);
+		std::string		get_first_name(void) const;
+		std::string		get_last_name(void) const;
+		std::string		get_nick_name(void) const;
+		std::string		get_phone_number(void) const;
+		std::string		get_darkest_secret(void) const;
 
 		void			set_first_name(const std::string& first_name);
 		void			set_last_name(const std::string& last_name);
@@ -39,8 +35,8 @@ class	Contact
 		void			set_phone_number(const std::string& phone_number);
 		void			set_darkest_secret(const std::string& darkest_secret);
 
-		void			print_aligned(void);
-		void			print_contact_info(void);
+		void			print_aligned(void) const;
+		void			print_contact_info(void) const;
 
 	private:
 		std::string		_first_name;
@@ -49,8 +45,8 @@ class	Contact
 		std::string		_phone_number;
 		std::string		_darkest_secret;
 
-		std::string		_crop_line(const std::string& line);
-		void			_print_aligned_field(const std::string& value);
+		std::string		_crop_line(const std::string& line) const;
+		void			_print_aligned_field(const std::string& value) const;
 
 };
 

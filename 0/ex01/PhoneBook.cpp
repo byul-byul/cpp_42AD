@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+# include "PhoneBook.hpp"
+# include <iostream>
+# include <iomanip>
 
 // ### Constructors & Destructors ###
 
@@ -48,7 +50,7 @@ void	PhoneBook::add(void)
 
 void	PhoneBook::search(void)
 {
-	size_t		i = 0;
+	std::size_t	i = 0;
 	std::string	input;
 	int			atoi;
 
@@ -59,7 +61,7 @@ void	PhoneBook::search(void)
 	}
 	while (i < _contact_list_size)
 	{
-		std::cout << "\t" << i + 1 ;
+		std::cout << std::setw(max_print_len) << (i + 1);
 		_contact_list[i].print_aligned();
 		std::cout << std::endl;
 		i++;
@@ -83,7 +85,7 @@ void	PhoneBook::_add_first_name(const std::string& value)
 
 	if (value.empty())
 	{
-		while (TRUE)
+		while (true)
 		{
 			std::cout << "Enter first name: ";
 			if (!std::getline(std::cin, label))
@@ -105,7 +107,7 @@ void	PhoneBook::_add_last_name(const std::string& value)
 
 	if (value.empty())
 	{
-		while (TRUE)
+		while (true)
 		{
 			std::cout << "Enter last name: ";
 			if (!std::getline(std::cin, label))
@@ -127,11 +129,16 @@ void	PhoneBook::_add_nick_name(const std::string& value)
 
 	if (value.empty())
 	{
-		std::cout << "Enter nick name: ";
-		if (!std::getline(std::cin, label))
-			return ;
-		if (label.size() <= 0)
-			label = "<empty>";
+		while (true)
+		{
+			std::cout << "Enter nick name: ";
+			if (!std::getline(std::cin, label))
+				return ;
+			if (label.empty())
+				std::cout << "Field cannot be empty" << std::endl;
+			else
+				break ;
+		}
 	}
 	else
 		label = value;
@@ -144,9 +151,9 @@ void	PhoneBook::_add_phone_number(const std::string& value)
 
 	if (value.empty() || !ft::ft_isdigits(value))
 	{
-		while (TRUE)
+		while (true)
 		{
-			std::cout << "Enter phone number: ";
+			std::cout << "Enter phone number (only digits): ";
 			if (!std::getline(std::cin, label))
 				break ;
 			if (label.size() <= 1 || !ft::ft_isdigits(label))
@@ -166,11 +173,16 @@ void	PhoneBook::_add_dark_secret(const std::string& value)
 
 	if (value.empty())
 	{
-		std::cout << "Enter dark secret: ";
-		if (!std::getline(std::cin, label))
-			return ;
-		if (label.size() <= 0)
-			label = "<empty>";
+		while (true)
+		{
+			std::cout << "Enter dark secret: ";
+			if (!std::getline(std::cin, label))
+				return ;
+			if (label.empty())
+				std::cout << "Field cannot be empty" << std::endl;
+			else
+				break ;
+		}
 	}
 	else
 		label = value;

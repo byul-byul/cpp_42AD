@@ -14,13 +14,14 @@
 # define FT_NAMESPACE_H
 
 # include <string>
+# include <cstddef>
 
 namespace	ft
 {
-	int			ft_isdigits(const std::string str);
-	int			ft_isalphas(const std::string str);
-	int			ft_atoi(const std::string str);
-	std::string	ft_toupper(std::string str);
+	bool		ft_isdigits(const std::string& str);
+	bool		ft_isalphas(const std::string& str);
+	int			ft_atoi(const std::string& str);
+	void		ft_toupper(std::string& str);
 }
 
 #endif

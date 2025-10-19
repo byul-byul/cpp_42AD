@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bhajili <bhajili@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_HPP
-# define PHONEBOOK_CLASS_HPP
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
+# include "Contact.hpp"
+# include "ft.namespace.hpp"
+# include <cstddef>
 
 # ifndef MAX_CONTACT_COUNT
 #  define MAX_CONTACT_COUNT	8
@@ -25,18 +29,6 @@
 #  define FAIL				1
 # endif
 
-# ifndef TRUE
-#  define TRUE				1
-# endif
-
-# ifndef FALSE
-#  define FALSE				0
-# endif
-
-# include <iostream>
-# include "Contact.class.hpp"
-# include "ft.namespace.hpp"
-
 class	PhoneBook
 {
 	public:
@@ -48,7 +40,7 @@ class	PhoneBook
 
 	private:
 		Contact		_contact_list[MAX_CONTACT_COUNT];
-		size_t		_contact_list_size;
+		std::size_t	_contact_list_size;
 		int			_last_updated_contact_index;
 
 		void		_add_first_name(const std::string& value);
