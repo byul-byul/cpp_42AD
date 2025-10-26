@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_H
-# define HARL_H
+#ifndef HARL_HPP
+# define HARL_HPP
 
 # include <string>
-# include <iostream>
 
 class	Harl
 {
@@ -23,21 +22,21 @@ class	Harl
 		 Harl(void);
 		~Harl(void);
 
-		void		complain(std::string level);
+		void	complain(const std::string& level) const;
 
 	private:
 
-		std::string _except_msg;
-		std::string	_debug_msg;
-		std::string	_info_msg;
-		std::string	_warn_msg;
-		std::string _error_msg;
+		const std::string	_except_msg;
+		const std::string	_debug_msg;
+		const std::string	_info_msg;
+		const std::string	_warn_msg;
+		const std::string	_error_msg;
 
-		void		_debug(void);
-		void		_info(void);
-		void		_warning(void);
-		void		_error(void);
-		void		_except(void);
+		void				_debug(void) const;
+		void				_info(void) const;
+		void				_warning(void) const;
+		void				_error(void) const;
+		void				_except(void) const;
 
 };
 

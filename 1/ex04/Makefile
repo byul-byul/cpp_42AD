@@ -12,7 +12,8 @@
 
 NAME	=	replace
 SDIR	=	./
-SRCS	=	main.cpp
+SRCS	=	main.cpp \
+			replace.cpp
 
 ODIR	=	objs/
 OBJS	=	$(addprefix $(ODIR), $(SRCS:.cpp=.o))
@@ -30,6 +31,7 @@ all: $(NAME)
 
 clean:
 	rm -rf $(ODIR)
+	rm -rf *.replace
 
 fclean: clean
 	rm -rf $(NAME)

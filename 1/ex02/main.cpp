@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 # include <iostream>
+# include <string>
 
 int	main(void)
 {
@@ -19,12 +20,13 @@ int	main(void)
 	std::string		*stringPTR = &brain_speech;
 	std::string		&stringREF = brain_speech;
 
-	std::cout << "the address in memory of the string:\t" << &brain_speech << std::endl;
+	std::cout << "the address in memory of the string:\t\t\t" << &brain_speech << std::endl;
 	std::cout << "the address in memory of the string by stringPTR:\t" << stringPTR << std::endl;
 	std::cout << "the address in memory of the string by stringREF:\t" << &stringREF << std::endl;
 	std::cout << std::endl;
-	std::cout << "the string by stringPTR:\t" << *stringPTR << std::endl;
-	std::cout << "the string by stringREF:\t" << stringREF << std::endl;
+	std::cout << "the string itself:\t\t\t" << brain_speech << std::endl;
+	std::cout << "the string by stringPTR:\t\t" << *stringPTR << std::endl;
+	std::cout << "the string by stringREF:\t\t" << stringREF << std::endl;
 
 	return (0);
 }

@@ -10,26 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_CLASS_HPP
-# define ZOMBIE_CLASS_HPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 # include <string>
-# include <iostream>
 
 class	Zombie
 {
 	public:
-		 Zombie(std::string name);
-		 Zombie(void);
-		~Zombie(void);
+		explicit	Zombie(const std::string& name);
+					Zombie(void);
+					~Zombie(void);
 
-		void	announce(void);
-		void	setName(std::string name);
+		void		announce(void) const;
+		void		setName(const std::string& name);
 
 	private:
 		std::string	_name;
-		static int	_nextIndex;
-		int			_index;
 };
+
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif

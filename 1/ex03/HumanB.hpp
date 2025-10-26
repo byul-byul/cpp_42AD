@@ -10,28 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMAN_B_CLASS_HPP
-# define HUMAN_B_CLASS_HPP
+#ifndef HUMAN_B_HPP
+# define HUMAN_B_HPP
 
 # include <string>
-# include <iostream>
-
 # include "Weapon.hpp"
 
 class	HumanB
 {
 	public:
-		 HumanB(std::string name);
-		 HumanB(void);
-		~HumanB(void);
+		explicit	HumanB(const std::string& name);
+					HumanB(void);
+					~HumanB(void);
 
-		void		attack(void);
-		void		setWeapon(Weapon &weapon);
-		Weapon		*getWeapon(void);
+		void		attack(void) const;
+		void		setWeapon(Weapon& weapon);
+		Weapon		*getWeapon(void) const;
 
 	private:
 		std::string	_name;
-		Weapon		*_weapon;
+		Weapon*		_weapon;
 };
 
 #endif

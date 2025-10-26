@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-
-void	randomChump(std::string name);
-Zombie*	newZombie(std::string name);
+# include "Zombie.hpp"
 
 int	main( void )
 {

@@ -10,37 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+# include "Zombie.hpp"
+# include <iostream>
 
-int	Zombie::_nextIndex = 0;
+Zombie::Zombie(const std::string& name): _name(name) {}
 
-Zombie::Zombie(std::string name)
-{
-	_name = name;
-	_nextIndex++;
-	_index = _nextIndex;
-	return ;
-}
-
-Zombie::Zombie(void)
-{
-	_nextIndex++;
-	_index = _nextIndex;
-	return ;
-}
+Zombie::Zombie(void) {}
 
 Zombie::~Zombie(void)
 {
-	std::cout << _index << ". " << _name << ": was destroyed" << std::endl;
-	return ;
+	std::cout << _name << ": was destroyed" << std::endl;
 }
 
-void	Zombie::announce(void)
+void	Zombie::announce(void) const
 {
-	std::cout << _index << ". " << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-void	Zombie::setName(std::string name)
+void	Zombie::setName(const std::string& name)
 {
 	_name = name;
 }

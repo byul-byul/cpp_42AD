@@ -10,30 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
+# include "Weapon.hpp"
 
-Weapon::Weapon(std::string type)
-{
-	setType(type);
-	return ;
-}
+Weapon::Weapon(const std::string& type): _type(type) {}
 
-Weapon::Weapon(void)
-{
-	return ;
-}
+Weapon::Weapon(void) {}
 
-Weapon::~Weapon(void)
-{
-	return ;
-}
+Weapon::~Weapon(void) {}
 
-std::string&	Weapon::getType(void)
+const std::string&	Weapon::getType(void) const
 {
 	return _type;
 }
 
-void	Weapon::setType(std::string type)
+void	Weapon::setType(const std::string& type)
 {
 	_type = type;
 }

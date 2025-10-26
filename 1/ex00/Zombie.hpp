@@ -10,23 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_CLASS_HPP
-# define ZOMBIE_CLASS_HPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 # include <string>
-# include <iostream>
 
 class	Zombie
 {
 	public:
-		 Zombie(std::string name);
-		 Zombie(void);
-		~Zombie(void);
+		explicit	Zombie(const std::string& name);
+					Zombie(void);
+					~Zombie(void);
 
-		void	announce(void);
+		void		announce(void) const;
 
 	private:
 		std::string	_name;
 };
+
+void	randomChump(std::string name);
+Zombie*	newZombie(std::string name);
 
 #endif
