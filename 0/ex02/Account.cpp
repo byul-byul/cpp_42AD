@@ -45,7 +45,7 @@ Account::~Account( void )
 
 void	Account::makeDeposit( int deposit )
 {
-	int p_amount = _amount;
+	const int p_amount = _amount;
 	_amount += deposit;
 	_nbDeposits++;
 
@@ -63,7 +63,7 @@ void	Account::makeDeposit( int deposit )
 
 bool	Account::makeWithdrawal( int withdrawal )
 {
-    int p_amount = _amount;
+    const int p_amount = _amount;
 
     _displayTimestamp();
     std::cout << "index:" << _accountIndex
@@ -145,4 +145,5 @@ void Account::_displayTimestamp(void)
 	          << std::setw(2) << std::setfill('0') << lt->tm_min
 	          << std::setw(2) << std::setfill('0') << lt->tm_sec
 	          << "] ";
+	std::cout << std::setfill(' ');
 }

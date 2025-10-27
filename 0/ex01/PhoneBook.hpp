@@ -36,7 +36,7 @@ class	PhoneBook
 		~PhoneBook(void);
 
 		void	add(void);
-		void	search(void);
+		void	search(void) const;
 
 	private:
 		Contact		_contact_list[MAX_CONTACT_COUNT];

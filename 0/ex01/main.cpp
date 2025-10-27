@@ -16,7 +16,7 @@
 
 void	welcomeMessage(void)
 {
-	std::cout << std::endl << "<>  Wellcome to the awesome PhoneBook session  <>";
+	std::cout << std::endl << "<>  Welcome to the awesome PhoneBook session  <>";
 	std::cout << std::endl << std::endl;
 	std::cout << "   ***************** MENU ********************" << std::endl;
 	std::cout << "   *   ADD    |     SEARCH     |    EXIT     *" << std::endl;

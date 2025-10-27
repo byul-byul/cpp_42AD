@@ -15,16 +15,9 @@
 
 // ### Constructors & Destructors ###
 
-Contact::Contact(void)
-{
-	return ;
-}
+Contact::Contact(void) {}
 
-Contact::~Contact(void)
-{
-	return ;
-}
-
+Contact::~Contact(void) {}
 
 // ############ setters #############
 
@@ -107,17 +100,14 @@ void	Contact::print_contact_info(void) const
 
 // ############# private #############
 
-void	Contact::_print_aligned_field(const std::string& value) const
+void Contact::_print_aligned_field(const std::string& value) const
 {
-	int	diff;
-
 	if (value.size() > max_print_len)
 		std::cout << _crop_line(value);
 	else
 	{
-		diff = max_print_len - value.size();
-		while (diff--)
-			std::cout << " ";
+		for (std::string::size_type k = 0; k < max_print_len - value.size(); ++k)
+			std::cout << ' ';
 		std::cout << value;
 	}
 }

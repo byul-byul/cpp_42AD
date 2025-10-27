@@ -16,17 +16,12 @@
 
 // ### Constructors & Destructors ###
 
-PhoneBook::PhoneBook(void)
-{
-	_contact_list_size = 0;
-	_last_updated_contact_index = -1;
-	return ;
-}
+PhoneBook::PhoneBook(void):
+	_contact_list_size(0),
+	_last_updated_contact_index(-1)
+	{}
 
-PhoneBook::~PhoneBook(void)
-{
-	return ;
-}
+PhoneBook::~PhoneBook(void) {}
 
 
 // ############# public #############
@@ -41,14 +36,28 @@ void	PhoneBook::add(void)
 	_last_updated_contact_index++;
 	if (_contact_list_size < MAX_CONTACT_COUNT)
 		_contact_list_size++;
+
 	_add_first_name(label);
 	_add_last_name(label);
 	_add_nick_name(label);
 	_add_phone_number(label);
 	_add_dark_secret(label);
+
+	Contact& c = _contact_list[_last_updated_contact_index];
+	if (c.get_first_name().empty()
+		|| c.get_last_name().empty()
+		|| c.get_nick_name().empty()
+		|| c.get_phone_number().empty()
+		|| c.get_darkest_secret().empty())
+	{
+		if (_contact_list_size > 0)
+			_contact_list_size--;
+		_last_updated_contact_index--;
+		std::cout << "Contact was not saved (empty fields)." << std::endl;
+    }
 }
 
-void	PhoneBook::search(void)
+void	PhoneBook::search(void) const
 {
 	std::size_t	i = 0;
 	std::string	input;
@@ -61,7 +70,7 @@ void	PhoneBook::search(void)
 	}
 	while (i < _contact_list_size)
 	{
-		std::cout << std::setw(max_print_len) << (i + 1);
+		std::cout << "|" << std::setw(Contact::max_print_len) << (i + 1);
 		_contact_list[i].print_aligned();
 		std::cout << std::endl;
 		i++;
@@ -70,7 +79,7 @@ void	PhoneBook::search(void)
 	if (!std::getline(std::cin, input))
 		return ;
 	atoi = ft::ft_atoi(input);
-	if (atoi > 0 && atoi < MAX_CONTACT_COUNT)
+	if (atoi >= 1 && static_cast<std::size_t>(atoi) <= _contact_list_size)
 		_contact_list[atoi - 1].print_contact_info();
 	else
 		std::cout << "Wrong index!" << std::endl;

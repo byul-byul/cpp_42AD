@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.namespace.hpp"
+# include "ft.namespace.hpp"
+# include <cctype> 
 
 bool	ft::ft_isdigits(const std::string& str)
 {
+	if (str.size() <= 0)
+		return false;
 	for (std::size_t i = 0; i < str.size(); ++i)
 		if (!std::isdigit(static_cast<unsigned char>(str[i])))
 			return (false);
@@ -22,39 +25,43 @@ bool	ft::ft_isdigits(const std::string& str)
 
 bool	ft::ft_isalphas(const std::string& str)
 {
+	if (str.size() <= 0)
+		return false;
 	for (std::size_t i = 0; i < str.size(); ++i)
 		if (!std::isalpha(static_cast<unsigned char>(str[i])))
 			return (false);
 	return (true);
 }
 
-int	ft::ft_atoi(const std::string& str)
+int ft::ft_atoi(const std::string& str)
 {
-	int	sum;
-	int	i;
-	int	sign;
+	int 					sum = 0;
+	int						sign = 1;
+	std::string::size_type	i = 0;
 
-	i = 0;
-	sum = 0;
-	sign = 1;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+	while (i < str.size() && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
 		++i;
-	if (str[i] == '-' || str[i] == '+')
+
+	if (i < str.size() && (str[i] == '-' || str[i] == '+'))
 	{
 		if (str[i] == '-')
-			sign *= -1;
-		i++;
+			sign = -1;
+		++i;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+
+	while (i < str.size() && (str[i] >= '0' && str[i] <= '9'))
 	{
 		sum = (sum * 10) + (str[i] - '0');
-		i++;
+		++i;
 	}
-	return (sign * sum);
+	return sign * sum;
 }
 
-void	ft::ft_toupper(std::string& str)
+void ft::ft_toupper(std::string& str)
 {
 	for (std::size_t i = 0; i < str.size(); ++i)
-		str[i] = toupper(str[i]);
+	{
+		const unsigned char uc = static_cast<unsigned char>(str[i]);
+		str[i] = static_cast<char>(std::toupper(uc));
+	}
 }

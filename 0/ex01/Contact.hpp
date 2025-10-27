@@ -15,8 +15,6 @@
 
 # include <string>
 
-enum { max_print_len = 10 };
-
 class	Contact
 {
 	public:
@@ -37,6 +35,8 @@ class	Contact
 
 		void			print_aligned(void) const;
 		void			print_contact_info(void) const;
+
+		enum { max_print_len = 10 };
 
 	private:
 		std::string		_first_name;

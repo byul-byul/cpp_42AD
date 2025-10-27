@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_NAMESPACE_H
-# define FT_NAMESPACE_H
+#ifndef FT_NAMESPACE_HPP
+# define FT_NAMESPACE_HPP
 
 # include <string>
 # include <cstddef>
