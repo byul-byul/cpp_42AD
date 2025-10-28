@@ -10,23 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <iostream>
-# include <string>
+#include <iostream>
+#include <string>
 
-int	main(void)
+int main(void)
 {
-	std::string		brain_speech = "HI THIS IS BRAIN";
+	std::string  brain_speech = "HI THIS IS BRAIN";
 
-	std::string		*stringPTR = &brain_speech;
-	std::string		&stringREF = brain_speech;
+	std::string* stringPTR = &brain_speech;
+	std::string& stringREF = brain_speech;
 
-	std::cout << "the address in memory of the string:\t\t\t" << &brain_speech << std::endl;
-	std::cout << "the address in memory of the string by stringPTR:\t" << stringPTR << std::endl;
-	std::cout << "the address in memory of the string by stringREF:\t" << &stringREF << std::endl;
+	std::cout << "the address in memory of the string:\t\t\t"
+				<< static_cast<const void*>(&brain_speech) << std::endl;
+	std::cout << "the address in memory of the string by stringPTR:\t"
+				<< static_cast<const void*>(stringPTR) << std::endl;
+	std::cout << "the address in memory of the string by stringREF:\t"
+				<< static_cast<const void*>(&stringREF) << std::endl;
 	std::cout << std::endl;
+
 	std::cout << "the string itself:\t\t\t" << brain_speech << std::endl;
 	std::cout << "the string by stringPTR:\t\t" << *stringPTR << std::endl;
 	std::cout << "the string by stringREF:\t\t" << stringREF << std::endl;
 
-	return (0);
+	return 0;
 }

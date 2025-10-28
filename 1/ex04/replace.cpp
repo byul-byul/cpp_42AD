@@ -34,7 +34,7 @@ static bool	open_output_file(const std::string& filename, std::ofstream& out)
 {
 	const std::string	path = filename + ".replace";
 
-	out.open(path.c_str(), std::ios::out | std::ios::binary);
+	out.open(path.c_str(), std::ios::out | std::ios::binary | std::ios::trunc);
 	if (out)
 		return true;
 	std::cerr << "Error: cannot create output file: " << path << "\n";
@@ -67,8 +67,10 @@ static void	replace(const std::string& filename, const std::string& target, cons
 	input = read_file(in);
 
 	if (target == update)
-		if (!write_file(out, input))
-			return ;
+	{
+		write_file(out, input);
+		return ;
+	}
 
 	result.reserve(input.size());
 	while (true)

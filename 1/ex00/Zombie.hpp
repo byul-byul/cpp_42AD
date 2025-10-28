@@ -19,12 +19,12 @@ class	Zombie
 {
 	public:
 		explicit	Zombie(const std::string& name);
-					Zombie(void);
 					~Zombie(void);
 
 		void		announce(void) const;
 
 	private:
+					Zombie(void);
 		std::string	_name;
 };
 

@@ -10,14 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Zombie.hpp"
+#include "Zombie.hpp"
 
-int	main( void )
+int main(void)
 {
-	Zombie	*heap_zombie = newZombie("Heapman");
+    // 1) Basic heap case + manual delete
+    Zombie* heap = newZombie("Heapman");
+    heap->announce();
+    delete heap;
 
-	heap_zombie->announce();
-	delete heap_zombie;
-	randomChump("Stackman");
-	return (0);
+    // 2) Stack case via helper (auto-destruction at function end)
+    randomChump("Stackman");
+
+    // 3) Multiple heap zombies; delete in reverse order
+    Zombie* a = newZombie("Alice");
+    Zombie* b = newZombie("Bob");
+    a->announce();
+    b->announce();
+    delete b; // ensure destructor messages work out of creation order
+    delete a;
+
+    // 4) Scoped stack zombie (destructor at block end)
+    {
+        Zombie scoped("Scoped");
+        scoped.announce();
+    }
+
+    // 5) Name with special ASCII characters
+    randomChump("Zed-42_[!]?");
+
+    return 0;
 }

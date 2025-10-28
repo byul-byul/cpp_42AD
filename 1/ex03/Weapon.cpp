@@ -14,7 +14,7 @@
 
 Weapon::Weapon(const std::string& type): _type(type) {}
 
-Weapon::Weapon(void) {}
+Weapon::Weapon(void): _type() {}
 
 Weapon::~Weapon(void) {}
 

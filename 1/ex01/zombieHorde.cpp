@@ -12,15 +12,13 @@
 
 #include "Zombie.hpp"
 
-Zombie*	zombieHorde(int N, std::string name)
+Zombie* zombieHorde(int N, std::string name)
 {
-	int		i = 0;
-	Zombie*	heap_zombie_horde = new Zombie[N];
+	if (N <= 0)
+		return NULL;
 
-	while (i < N)
-	{
-		heap_zombie_horde[i].setName(name);
-		i++;
-	}
-	return (heap_zombie_horde);
+	Zombie* horde = new Zombie[N];
+	for (int i = 0; i < N; ++i)
+		horde[i].setName(name);
+	return horde;
 }

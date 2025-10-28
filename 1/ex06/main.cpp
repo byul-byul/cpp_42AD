@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 	Harl	complaint;
 
 	if (ac != 2)
-		std::cout << "Usage: ./harl LEVEL" <<std::endl;
+		std::cout << "Usage: ./harlFilter LEVEL" <<std::endl;
 	else
 		complaint.complain(av[1]);
 	return (0);

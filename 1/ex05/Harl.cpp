@@ -12,13 +12,14 @@
 
 # include "Harl.hpp"
 # include <iostream>
+# include <cstddef>
 
 Harl::Harl(void):
-	_except_msg("EXCEPTION"),
-	_debug_msg("DEBUG"),
-	_info_msg("INFO"),
-	_warn_msg("WARNING"),
-	_error_msg("ERROR")
+	_except_msg("[ Probably complaining about insignificant problems ]"),
+	_debug_msg("I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!"),
+	_info_msg("I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!"),
+	_warn_msg("I think I deserve to have some extra bacon for free. I've been coming for years, whereas you started working here just last month."),
+	_error_msg("This is unacceptable! I want to speak to the manager now.")
 	{}
 
 Harl::~Harl(void) {}
@@ -52,12 +53,21 @@ typedef void	(Harl::*harlFuncPtr)() const;
 
 void	Harl::complain(const std::string& level) const
 {
-	int	i = 0;
+	static const char* levelList[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+	static const std::size_t N = sizeof(levelList) / sizeof(levelList[0]);
 
-	static const harlFuncPtr	harlFuncPtrList[]	= {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error, &Harl::_except};
-	static const char*			levelList[]			= {"DEBUG", "INFO", "WARNING", "ERROR"};
+	static const harlFuncPtr fn[] =
+	{
+		&Harl::_debug,
+		&Harl::_info,
+		&Harl::_warning,
+		&Harl::_error,
+		&Harl::_except
+	};
 
-	while (i != 4 && level != levelList[i])
-		i++;
-	(this->*harlFuncPtrList[i])();
+	std::size_t i = 0;
+	while (i < N && level != levelList[i])
+		++i;
+	(this->*fn[i < N ? i : N])();
 }
+

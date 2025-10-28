@@ -12,13 +12,14 @@
 
 # include "Harl.hpp"
 # include <iostream>
+# include <cstddef>
 
 Harl::Harl(void):
-	_except_msg("EXCEPTION"),
-	_debug_msg("DEBUG"),
-	_info_msg("INFO"),
-	_warn_msg("WARNING"),
-	_error_msg("ERROR")
+	_except_msg("[ Probably complaining about insignificant problems ]"),
+	_debug_msg("I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!"),
+	_info_msg("I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!"),
+	_warn_msg("I think I deserve to have some extra bacon for free. I've been coming for years, whereas you started working here just last month."),
+	_error_msg("This is unacceptable! I want to speak to the manager now.")
 	{}
 
 Harl::~Harl(void) {}
@@ -48,23 +49,30 @@ void	Harl::_except(void) const
 	std::cout << _except_msg << std::endl;
 }
 
-void	Harl::complain(const std::string& level) const
+void Harl::complain(const std::string& level) const
 {
-	int	i = 0;
+	static const char* levels[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+	static const std::size_t N = sizeof(levels) / sizeof(levels[0]);
 
-	static const char*	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	std::size_t i = 0;
+	while (i < N && level != levels[i])
+		++i;
 
-	while (i != 4 && level != levels[i])
-		i++;
-	switch (i)
-	{
+	switch (i) {
 		case 0:
+			std::cout << "[ DEBUG ]\n";
 			_debug();
+			// fall through
 		case 1:
+			std::cout << "[ INFO ]\n";
 			_info();
+			// fall through
 		case 2:
+			std::cout << "[ WARNING ]\n";
 			_warning();
+			// fall through
 		case 3:
+			std::cout << "[ ERROR ]\n";
 			_error();
 			break;
 		default:
