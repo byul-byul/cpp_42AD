@@ -16,18 +16,18 @@
 
 Fixed::Fixed( void ): _raw(0)
 {
-    std::cout << "Default constructor called" << std::endl;
+    // std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed( const Fixed& original ) : _raw(0)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    // std::cout << "Copy constructor called" << std::endl;
     *this = original;
 }
 
 Fixed&  Fixed::operator=(const Fixed& right_operand)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
+    // std::cout << "Copy assignment operator called" << std::endl;
     if (this != &right_operand)
         this->_raw = right_operand._raw;
     return *this;
@@ -35,18 +35,18 @@ Fixed&  Fixed::operator=(const Fixed& right_operand)
 
 Fixed::~Fixed( void )
 {
-    std::cout << "Destructor called" << std::endl;
+    // std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed( const int value )
 {
-    std::cout << "Int constructor called" << std::endl;
+    // std::cout << "Int constructor called" << std::endl;
     this->_raw = value << _fracBits;
 }
 
 Fixed::Fixed( const float value )
 {
-    std::cout << "Float constructor called" << std::endl;
+    // std::cout << "Float constructor called" << std::endl;
     this->_raw = static_cast<int>(roundf(value * (1 << _fracBits)));
 }
 
@@ -74,8 +74,8 @@ Fixed Fixed::operator-(const Fixed& right_operand) const
 Fixed Fixed::operator*(const Fixed& right_operand) const
 {
     Fixed out;
-    const long a = static_cast<long>(this->_raw);
-    const long b = static_cast<long>(right_operand._raw);
+    const long long a = static_cast<long long>(this->_raw);
+    const long long b = static_cast<long long>(right_operand._raw);
     out._raw = static_cast<int>((a * b) >> _fracBits);
     return out;
 }
@@ -83,8 +83,8 @@ Fixed Fixed::operator*(const Fixed& right_operand) const
 Fixed Fixed::operator/(const Fixed& right_operand) const
 {
     Fixed out;
-    const long a = static_cast<long>(this->_raw) << _fracBits;
-    const long b = static_cast<long>(right_operand._raw);
+    const long long a = static_cast<long long>(this->_raw) << _fracBits;
+    const long long b = static_cast<long long>(right_operand._raw);
     out._raw = static_cast<int>(a / b);
     return out;
 }
@@ -117,13 +117,13 @@ Fixed Fixed::operator--(int)
 
 void    Fixed::setRawBits(int const raw)
 {
-    std::cout << "setRawBits member function called" << std::endl;
+    // std::cout << "setRawBits member function called" << std::endl;
     this->_raw = raw;
 }
 
 int Fixed::getRawBits() const
 {
-    std::cout << "getRawBits member function called" << std::endl;
+    // std::cout << "getRawBits member function called" << std::endl;
     return this->_raw;
 }
 

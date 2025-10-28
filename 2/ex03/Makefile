@@ -10,10 +10,12 @@
 #                                                                            #
 # ************************************************************************** #
 
-NAME	=	fixed
+NAME	=	bsp
 SDIR	=	./
 SRCS	=	main.cpp \
-			Fixed.cpp
+			Fixed.cpp \
+			Point.cpp \
+			bsp.cpp
 
 ODIR	=	objs/
 OBJS	=	$(addprefix $(ODIR), $(SRCS:.cpp=.o))

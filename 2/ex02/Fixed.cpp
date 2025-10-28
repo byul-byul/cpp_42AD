@@ -74,8 +74,8 @@ Fixed Fixed::operator-(const Fixed& right_operand) const
 Fixed Fixed::operator*(const Fixed& right_operand) const
 {
     Fixed out;
-    const long a = static_cast<long>(this->_raw);
-    const long b = static_cast<long>(right_operand._raw);
+    const long long a = static_cast<long long>(this->_raw);
+    const long long b = static_cast<long long>(right_operand._raw);
     out._raw = static_cast<int>((a * b) >> _fracBits);
     return out;
 }
@@ -83,8 +83,8 @@ Fixed Fixed::operator*(const Fixed& right_operand) const
 Fixed Fixed::operator/(const Fixed& right_operand) const
 {
     Fixed out;
-    const long a = static_cast<long>(this->_raw) << _fracBits;
-    const long b = static_cast<long>(right_operand._raw);
+    const long long a = static_cast<long long>(this->_raw) << _fracBits;
+    const long long b = static_cast<long long>(right_operand._raw);
     out._raw = static_cast<int>(a / b);
     return out;
 }

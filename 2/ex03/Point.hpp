@@ -25,12 +25,15 @@ class   Point
          Point& operator=( const Point& right_operand );
         ~Point( void) ;
 
+        const Fixed&    getX( void ) const;
+        const Fixed&    getY( void ) const;
+
     private:
 
         const Fixed _x;
         const Fixed _y;
 };
 
-bool    bsp( Point const a, Point const b, Point const c, Point const point);
+bool    bsp( const Point a, const Point b, const Point c, const Point point );
 
 #endif
