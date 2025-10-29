@@ -20,7 +20,7 @@ SRCS	=	main.cpp \
 ODIR	=	objs/
 OBJS	=	$(addprefix $(ODIR), $(SRCS:.cpp=.o))
 CMPL	=	c++
-FLAGS	=	-Wall -Wextra -Werror -std=c++98 -Wno-implicit-fallthrough
+FLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 $(ODIR)%.o :	$(SDIR)%.cpp
 	mkdir -p $(ODIR)

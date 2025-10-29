@@ -12,6 +12,7 @@
 
 # include "ClapTrap.hpp"
 # include <iostream>
+# include <climits>
 
 ClapTrap::ClapTrap( void ):
     _name("Default name"),
@@ -28,7 +29,7 @@ ClapTrap::ClapTrap( const std::string& name ):
     _energyPoints(10),
     _attackDamage(0)
     {
-        std::cout << "PClapTrap: arameter constructor called" << std::endl;
+        std::cout << "ClapTrap: Parameter constructor called" << std::endl;
     }
 
 ClapTrap::ClapTrap( const ClapTrap& original ):
@@ -119,8 +120,12 @@ void ClapTrap::beRepaired(unsigned int amount)
     }
 
     --_energyPoints;
-    _hitPoints += amount;
 
+    // overflow protection:
+    if (amount > UINT_MAX - _hitPoints)
+        _hitPoints = UINT_MAX;
+    else
+        _hitPoints += amount;
     std::cout << "ClapTrap " << _name
               << " repairs itself for " << amount
               << " points! (HP = " << _hitPoints

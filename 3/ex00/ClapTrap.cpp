@@ -12,6 +12,7 @@
 
 # include "ClapTrap.hpp"
 # include <iostream>
+# include <climits>
 
 ClapTrap::ClapTrap( void ):
     _name("Default name"),
@@ -119,7 +120,12 @@ void ClapTrap::beRepaired(unsigned int amount)
     }
 
     --_energyPoints;
-    _hitPoints += amount;
+
+    // overflow protection:
+    if (amount > UINT_MAX - _hitPoints)
+        _hitPoints = UINT_MAX;
+    else
+        _hitPoints += amount;
 
     std::cout << "ClapTrap " << _name
               << " repairs itself for " << amount
