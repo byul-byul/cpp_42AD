@@ -10,10 +10,11 @@
 #                                                                            #
 # ************************************************************************** #
 
-NAME	=	clapTrap
+NAME	=	scavTrap
 SDIR	=	./
 SRCS	=	main.cpp \
-			ClapTrap.cpp
+			ClapTrap.cpp \
+			ScavTrap.cpp
 
 ODIR	=	objs/
 OBJS	=	$(addprefix $(ODIR), $(SRCS:.cpp=.o))
