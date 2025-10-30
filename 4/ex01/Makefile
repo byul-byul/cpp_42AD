@@ -10,14 +10,13 @@
 #                                                                            #
 # ************************************************************************** #
 
-NAME	=	animal
+NAME	=	brain
 SDIR	=	./
 SRCS	=	main.cpp \
 			Animal.cpp \
 			Cat.cpp \
 			Dog.cpp \
-			WrongAnimal.cpp \
-			WrongCat.cpp
+			Brain.cpp
 
 ODIR	=	objs/
 OBJS	=	$(addprefix $(ODIR), $(SRCS:.cpp=.o))

@@ -14,6 +14,7 @@
 # define CAT_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class   Cat : public Animal
 {
@@ -24,7 +25,13 @@ class   Cat : public Animal
                          Cat& operator=( const Cat& right_operand );
         virtual         ~Cat( void );
 
-        virtual void    makeSound( void ) const;
+        virtual void        makeSound( void ) const;
+        const std::string&  getIdea( int idx ) const;
+        void                setIdea( int idx, const std::string& idea );
+
+    private:
+
+        Brain*              _brain;
 };
 
 #endif

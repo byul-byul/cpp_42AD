@@ -15,8 +15,8 @@
 
 Cat::Cat( void ): Animal()
 {
-    type = "Cat";
     std::cout << "Cat: Default constructor called" << std::endl;
+    type = "Cat";
 }
 
 Cat::Cat( const Cat& original ): Animal(original)

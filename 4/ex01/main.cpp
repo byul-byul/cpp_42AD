@@ -10,96 +10,71 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// main.cpp
-#include "Animal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+// main.cpp (ex01)
+# include "Animal.hpp"
+# include "Dog.hpp"
+# include "Cat.hpp"
 
-#include <iostream>
+# include <iostream>
 
-int main()
-{
-    std::cout << "=== NORMAL CASE ===" << std::endl;
+int main() {
+    std::cout << "=== ARRAY OF ANIMALS (HALF DOGS / HALF CATS) ===" << std::endl;
     {
-        const Animal* meta = new Animal();
-        const Animal* j    = new Dog();
-        const Animal* i    = new Cat();
+        const int N = 6;
+        const Animal* zoo[N];
 
-        std::cout << j->getType() << std::endl; // Dog
-        std::cout << i->getType() << std::endl; // Cat
+        for (int i = 0; i < N/2; ++i)   zoo[i]      = new Dog();
+        for (int i = N/2; i < N; ++i)   zoo[i]      = new Cat();
 
-        i->makeSound(); // Meow!
-        j->makeSound(); // Woof!
-        meta->makeSound();
+        for (int i = 0; i < N; ++i)     zoo[i]->makeSound();
 
-        delete i;
-        delete j;
-        delete meta;
+        // delete через базовый указатель — проверка виртуальных деструкторов
+        for (int i = 0; i < N; ++i)     delete zoo[i];
     }
 
-    std::cout << "\n=== WRONG CASE (no virtual) ===" << std::endl;
-    {
-        const WrongAnimal* wrongmeta = new WrongAnimal();
-        const WrongAnimal* wrongi    = new WrongCat();
-
-        std::cout << wrongi->getType() << std::endl; // WrongCat
-        wrongi->makeSound();   // вызовется WrongAnimal::makeSound()
-        wrongmeta->makeSound();
-
-        delete wrongi;         // если ~WrongAnimal не virtual, ~WrongCat не вызовется
-        delete wrongmeta;
-    }
-
-    std::cout << "\n=== COPY/ASSIGN TESTS ===" << std::endl;
+    std::cout << "\n=== DEEP COPY: DOG (copy-ctor) ===" << std::endl;
     {
         Dog d1;
-        Dog d2(d1);
-        Dog d3; d3 = d1;
+        d1.setIdea(0, "bone");
+        Dog d2(d1);                 // deep copy
+        d1.setIdea(0, "meat");      // меняем исходник
+        std::cout << "d1[0]: " << d1.getIdea(0) << std::endl; // meat
+        std::cout << "d2[0]: " << d2.getIdea(0) << std::endl; // bone  (должно отличаться)
+    }
 
+    std::cout << "\n=== DEEP COPY: CAT (copy-ctor) ===" << std::endl;
+    {
         Cat c1;
-        Cat c2(c1);
-        Cat c3; c3 = c1;
-        // Деструкторы сработают в конце блока (сначала Dog/Cat, затем Animal)
+        c1.setIdea(1, "nap");
+        Cat c2(c1);                 // deep copy
+        c1.setIdea(1, "fish");      // меняем исходник
+        std::cout << "c1[1]: " << c1.getIdea(1) << std::endl; // fish
+        std::cout << "c2[1]: " << c2.getIdea(1) << std::endl; // nap   (должно отличаться)
     }
 
-    std::cout << "\n=== REFERENCE POLYMORPHISM ===" << std::endl;
+    std::cout << "\n=== DEEP COPY: ASSIGNMENT (Dog & Cat) ===" << std::endl;
     {
-        Dog d;  Cat c;
-        const Animal& ar1 = d;
-        const Animal& ar2 = c;
-        ar1.makeSound(); // Woof!
-        ar2.makeSound(); // Meow!
+        Dog d1; Dog d3;
+        d1.setIdea(2, "run");
+        d3 = d1;                    // operator= deep copy
+        d1.setIdea(2, "sleep");     // меняем исходник
+        std::cout << "d1[2]: " << d1.getIdea(2) << std::endl; // sleep
+        std::cout << "d3[2]: " << d3.getIdea(2) << std::endl; // run   (должно отличаться)
+
+        Cat c1; Cat c3;
+        c1.setIdea(3, "climb");
+        c3 = c1;                    // operator= deep copy
+        c1.setIdea(3, "hunt");      // меняем исходник
+        std::cout << "c1[3]: " << c1.getIdea(3) << std::endl; // hunt
+        std::cout << "c3[3]: " << c3.getIdea(3) << std::endl; // climb (должно отличаться)
     }
 
-    std::cout << "\n=== GETTYPE & NO SLICING ===" << std::endl;
-    {
-        Dog d;  Cat c;
-        std::cout << d.getType() << std::endl; // Dog
-        std::cout << c.getType() << std::endl; // Cat
-
-        // Никаких присваиваний вида: Animal a = d; // (срезка) — намеренно не делаем
-    }
-
-    std::cout << "\n=== WRONG CALLS (BASE VS DERIVED) ===" << std::endl;
-    {
-        WrongCat wc;
-        const WrongAnimal* wa = &wc;
-        wa->makeSound(); // WrongAnimal::makeSound()
-        wc.makeSound();  // "Wrong Meow!"
-    }
-
-    std::cout << "\n=== DELETE THROUGH BASE (NORMAL) ===" << std::endl;
+    std::cout << "\n=== POLYMORPHIC DELETE SANITY ===" << std::endl;
     {
         const Animal* a = new Dog();
-        delete a; // ожидаем ~Dog(), затем ~Animal()
-    }
-
-    std::cout << "\n=== DELETE THROUGH BASE (WRONG) ===" << std::endl;
-    {
-        const WrongAnimal* a = new WrongCat();
-        delete a; // если ~WrongAnimal не virtual — вызовется только ~WrongAnimal()
+        const Animal* b = new Cat();
+        delete a; // должен вызвать ~Dog() затем ~Animal()
+        delete b; // должен вызвать ~Cat() затем ~Animal()
     }
 
     return 0;

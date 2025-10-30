@@ -15,29 +15,47 @@
 
 Cat::Cat( void ): Animal()
 {
-    type = "Cat";
     std::cout << "Cat: Default constructor called" << std::endl;
+    type = "Cat";
+    _brain = new Brain();
 }
 
 Cat::Cat( const Cat& original ): Animal(original)
 {
     std::cout << "Cat: Copy constructor called" << std::endl;
+    _brain = new Brain(*original._brain);
 }
 
-Cat&  Cat::operator=(const Cat& right_operand)
+Cat& Cat::operator=(const Cat& right_operand)
 {
     std::cout << "Cat: Copy assignment operator called" << std::endl;
     if (this != &right_operand)
+    {
         Animal::operator=(right_operand);
+        Brain* tmp = new Brain(*right_operand._brain); // может бросить
+        delete _brain;
+        _brain = tmp;
+    }
     return *this;
 }
 
 Cat::~Cat( void )
 {
     std::cout << "Cat: Destructor called" << std::endl;
+    delete _brain;
 }
 
 void    Cat::makeSound( void ) const
 {
     std::cout << "Meow!" << std::endl;
+}
+
+const std::string& Cat::getIdea(int idx) const
+{
+    return _brain->getIdea(idx);
+}
+
+void Cat::setIdea(int idx, const std::string& idea)
+{
+    _brain->setIdea(idx, idea);
 }

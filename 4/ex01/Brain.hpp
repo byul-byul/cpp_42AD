@@ -19,13 +19,13 @@ class Brain
 {
     public:
 
-                             Brain(void);
-                             Brain(const Brain& other);
-                             Brain& operator=(const Brain& rhs);
-                            ~Brain(void);
+                             Brain( void );
+                             Brain( const Brain& other) ;
+                             Brain& operator=( const Brain& rhs );
+                            ~Brain( void );
 
-        const std::string&  getIdea(int idx) const;
-        void                setIdea(int idx, const std::string& v);
+        const std::string&  getIdea( int idx ) const;
+        void                setIdea( int idx, const std::string& idea );
 
     private:
 
