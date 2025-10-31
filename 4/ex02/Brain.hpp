@@ -20,7 +20,7 @@ class Brain
     public:
 
                              Brain( void );
-                             Brain( const Brain& other) ;
+                             Brain( const Brain& original ) ;
                              Brain& operator=( const Brain& rhs );
                             ~Brain( void );
 
