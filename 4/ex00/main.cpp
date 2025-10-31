@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Animal.hpp"
-# include "Dog.hpp"
-# include "Cat.hpp"
-# include "WrongAnimal.hpp"
-# include "WrongCat.hpp"
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
-# include <iostream>
+#include <iostream>
 
 int main()
 {
@@ -44,10 +44,10 @@ int main()
         const WrongAnimal* wrongi    = new WrongCat();
 
         std::cout << wrongi->getType() << std::endl; // WrongCat
-        wrongi->makeSound();   // вызовется WrongAnimal::makeSound()
+        wrongi->makeSound();   // calls WrongAnimal::makeSound()
         wrongmeta->makeSound();
 
-        delete wrongi;         // если ~WrongAnimal не virtual, ~WrongCat не вызовется
+        delete wrongi;         // if ~WrongAnimal is not virtual, ~WrongCat will not be called
         delete wrongmeta;
     }
 
@@ -60,7 +60,7 @@ int main()
         Cat c1;
         Cat c2(c1);
         Cat c3; c3 = c1;
-        // Деструкторы сработают в конце блока (сначала Dog/Cat, затем Animal)
+        // Destructors will run at the end of the block (derived first, then base)
     }
 
     std::cout << "\n=== REFERENCE POLYMORPHISM ===" << std::endl;
@@ -78,7 +78,7 @@ int main()
         std::cout << d.getType() << std::endl; // Dog
         std::cout << c.getType() << std::endl; // Cat
 
-        // Никаких присваиваний вида: Animal a = d; // (срезка) — намеренно не делаем
+        // No assignments like: Animal a = d; // slicing intentionally avoided
     }
 
     std::cout << "\n=== WRONG CALLS (BASE VS DERIVED) ===" << std::endl;
@@ -92,13 +92,13 @@ int main()
     std::cout << "\n=== DELETE THROUGH BASE (NORMAL) ===" << std::endl;
     {
         const Animal* a = new Dog();
-        delete a; // ожидаем ~Dog(), затем ~Animal()
+        delete a; // expect ~Dog() then ~Animal()
     }
 
     std::cout << "\n=== DELETE THROUGH BASE (WRONG) ===" << std::endl;
     {
         const WrongAnimal* a = new WrongCat();
-        delete a; // если ~WrongAnimal не virtual — вызовется только ~WrongAnimal()
+        delete a; // if ~WrongAnimal is not virtual, only ~WrongAnimal() will be called
     }
 
     return 0;
