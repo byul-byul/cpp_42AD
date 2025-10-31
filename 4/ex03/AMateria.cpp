@@ -31,8 +31,7 @@ AMateria::AMateria( const AMateria& original ) : type(original.type)
 AMateria&  AMateria::operator=( const AMateria& right_operand )
 {
     std::cout << "AMateria: Copy assignment operator called" << std::endl;
-    if (this != &right_operand)
-        this->type = right_operand.type;
+    (void)right_operand; // type is identity; nothing to copy
     return *this;
 }
 

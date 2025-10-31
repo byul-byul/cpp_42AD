@@ -16,7 +16,8 @@
 
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << "=== ARRAY OF AANIMALS (HALF DOGS / HALF CATS) ===" << std::endl;
     {
         const int N = 6;

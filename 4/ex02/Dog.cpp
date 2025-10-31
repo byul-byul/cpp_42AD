@@ -32,7 +32,7 @@ Dog& Dog::operator=(const Dog& right_operand)
     if (this != &right_operand)
     {
         AAnimal::operator=(right_operand);
-        Brain* tmp = new Brain(*right_operand._brain); // может бросить
+        Brain* tmp = new Brain(*right_operand._brain);
         delete _brain;
         _brain = tmp;
     }

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// main.cpp (ex03)
 #include "AMateria.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
@@ -140,6 +139,40 @@ int main()
         me.use(0, bob);
         me.use(1, bob);
         // me will delete a/b in its destructor
+    }
+
+    // === EDGE: UNKNOWN TYPE / NULL EQUIP / INVALID INDICES ===
+    sep("EDGE CASES");
+    {
+        MateriaSource src;
+        src.learnMateria(new Ice());
+
+        Character me("me");
+        Character bob("bob");
+
+        // 1) unknown type → createMateria returns 0; equip(0) is no-op
+        AMateria* unk = src.createMateria("unknown");
+        me.equip(unk);                 // should do nothing
+        // (unk is null, nothing to delete)
+
+        // 2) explicit NULL equip — no-op
+        me.equip(0);
+
+        // 3) unequip on empty slot / invalid indices — no-op
+        me.unequip(0);                 // slot empty
+        me.unequip(-1);
+        me.unequip(4);
+
+        // 4) use on empty slot / invalid indices — no-op (no crash, no output)
+        me.use(0, bob);
+        me.use(-1, bob);
+        me.use(4, bob);
+
+        // sanity: equip one real materia and use it to ensure normal path still works
+        AMateria* ice = src.createMateria("ice");
+        me.equip(ice);                 // now slot 0 filled, owned by 'me'
+        me.use(0, bob);                // should print ice line
+        // 'me' will delete ice in its destructor
     }
 
     sep("DONE");

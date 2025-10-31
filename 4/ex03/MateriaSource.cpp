@@ -47,27 +47,26 @@ MateriaSource::~MateriaSource( void )
 
 void    MateriaSource::learnMateria( AMateria* m )
 {
-    if ( !m )
+    if (!m)
         return;
 
     for (int i = 0; i < 4; ++i)
     {
-        if ( _storage[i] == 0 )
+        if (_storage[i] == 0)
         {
             _storage[i] = m->clone(); // store a copy (template)
+            delete m;
             return;
         }
     }
-    // storage full: do nothing
+    delete m; 
 }
 
 AMateria*   MateriaSource::createMateria( std::string const& type )
 {
     for (int i = 0; i < 4; ++i)
-    {
         if ( _storage[i] && _storage[i]->getType() == type )
             return _storage[i]->clone();
-    }
     return 0; // unknown type
 }
 

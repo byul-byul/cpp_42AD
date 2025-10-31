@@ -17,7 +17,9 @@ SRCS	=	main.cpp \
 			MateriaSource.cpp \
 			Character.cpp \
 			Ice.cpp \
-			Cure.cpp
+			Cure.cpp \
+			IMateriaSource.cpp \
+			ICharacter.cpp
 
 ODIR	=	objs/
 OBJS	=	$(addprefix $(ODIR), $(SRCS:.cpp=.o))

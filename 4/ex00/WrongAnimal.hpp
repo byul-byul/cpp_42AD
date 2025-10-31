@@ -19,9 +19,9 @@ class   WrongAnimal
 {
     public:
 
-                            WrongAnimal( void );
-                            WrongAnimal( const WrongAnimal& original );
-                            WrongAnimal& operator=( const WrongAnimal& right_operand );
+                             WrongAnimal( void );
+                             WrongAnimal( const WrongAnimal& original );
+                             WrongAnimal& operator=( const WrongAnimal& right_operand );
         virtual             ~WrongAnimal( void );
 
         void                makeSound( void ) const;
