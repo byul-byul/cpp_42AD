@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bh <bh@student.42.fr>                      #+#  +:+       +#+        */
+/*   By: bhajili <bhajili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-30 16:16:18 by bh                #+#    #+#             */
-/*   Updated: 2025-10-30 16:16:18 by bh               ###   ########.fr       */
+/*   Created: 2025/10/30 16:16:18 by bh                #+#    #+#             */
+/*   Updated: 2025/10/31 16:00:26 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Brain
     public:
 
                              Brain( void );
-                             Brain( const Brain& original ) ;
+                             Brain( const Brain& original );
                              Brain& operator=( const Brain& rhs );
                             ~Brain( void );
 

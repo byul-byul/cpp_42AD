@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bh <bh@student.42.fr>                      #+#  +:+       +#+        */
+/*   By: bhajili <bhajili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-30 12:21:06 by bh                #+#    #+#             */
-/*   Updated: 2025-10-30 12:21:06 by bh               ###   ########.fr       */
+/*   Created: 2025/10/30 12:21:06 by bh                #+#    #+#             */
+/*   Updated: 2025/10/31 17:44:23 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ Cat& Cat::operator=(const Cat& right_operand)
     if (this != &right_operand)
     {
         Animal::operator=(right_operand);
-        Brain* tmp = new Brain(*right_operand._brain); // может бросить
-        delete _brain;
+        Brain* tmp = new Brain(*right_operand._brain);
         _brain = tmp;
     }
     return *this;

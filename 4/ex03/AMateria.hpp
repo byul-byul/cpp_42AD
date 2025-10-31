@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bh <bh@student.42.fr>                      #+#  +:+       +#+        */
+/*   By: bhajili <bhajili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-31 06:02:18 by bh                #+#    #+#             */
-/*   Updated: 2025-10-31 06:02:18 by bh               ###   ########.fr       */
+/*   Created: 2025/10/31 06:02:18 by bh                #+#    #+#             */
+/*   Updated: 2025/10/31 16:13:57 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class   AMateria
 {
     public:
 
-                             AMateria( void );
                              AMateria( const std::string& type );
                              AMateria( const AMateria& original );
         AMateria&           operator=( const AMateria& right_operand );
@@ -33,6 +32,7 @@ class   AMateria
 
     protected:
 
+                             AMateria( void );
         std::string         type;
 };
 

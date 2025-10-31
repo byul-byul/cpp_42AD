@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bh <bh@student.42.fr>                      #+#  +:+       +#+        */
+/*   By: bhajili <bhajili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-30 12:19:57 by bh                #+#    #+#             */
-/*   Updated: 2025-10-30 12:19:57 by bh               ###   ########.fr       */
+/*   Created: 2025/10/30 12:19:57 by bh                #+#    #+#             */
+/*   Updated: 2025/10/31 17:44:17 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ Dog& Dog::operator=(const Dog& right_operand)
     if (this != &right_operand)
     {
         Animal::operator=(right_operand);
-        Brain* tmp = new Brain(*right_operand._brain); // может бросить
-        delete _brain;
+        Brain* tmp = new Brain(*right_operand._brain);
         _brain = tmp;
     }
     return *this;

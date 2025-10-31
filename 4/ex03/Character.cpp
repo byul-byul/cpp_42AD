@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bh <bh@student.42.fr>                      #+#  +:+       +#+        */
+/*   By: bhajili <bhajili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-31 08:46:10 by bh                #+#    #+#             */
-/*   Updated: 2025-10-31 08:46:10 by bh               ###   ########.fr       */
+/*   Created: 2025/10/31 08:46:10 by bh                #+#    #+#             */
+/*   Updated: 2025/10/31 17:32:33 by bhajili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Character&  Character::operator=( const Character& right_operand )
     if (this != &right_operand)
     {
         _name = right_operand._name;
-        _clearInventory();                 // delete before adding new ones (per subject)
+        _clearInventory();
         _deepCopyFrom(right_operand);
     }
     return *this;
@@ -58,26 +58,27 @@ std::string const&  Character::getName( void ) const
     return _name;
 }
 
-void    Character::equip( AMateria* m )
+void Character::equip(AMateria* m)
 {
     if (!m)
         return;
+
     for (int i = 0; i < 4; ++i)
-    {
+        if (_inventory[i] == m)
+            return;
+
+    for (int i = 0; i < 4; ++i)
         if (_inventory[i] == 0)
         {
             _inventory[i] = m;
             return;
         }
-    }
-    // inventory full → do nothing
 }
 
 void    Character::unequip( int idx )
 {
     if (idx < 0 || idx >= 4)
         return;
-    // do not delete here by subject rule
     _inventory[idx] = 0;
 }
 
