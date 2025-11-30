@@ -17,21 +17,26 @@
 # include <iostream>
 # include <exception>
 
+# include "AForm.hpp"
+
 class Bureaucrat
 {
     public:
 
-                        Bureaucrat( void );
-                        Bureaucrat( const std::string &name, int grade );
-                        Bureaucrat( const Bureaucrat &other );
-                        Bureaucrat &operator=( const Bureaucrat &other );
-                       ~Bureaucrat( void );
+                            Bureaucrat( void );
+                            Bureaucrat( const std::string &name, int grade );
+                            Bureaucrat( const Bureaucrat &other );
+                            Bureaucrat &operator=( const Bureaucrat &other );
+                           ~Bureaucrat( void );
 
         const std::string&  getName() const;
         int                 getGrade() const;
 
-        void                incrementGrade();
-        void                decrementGrade();
+        void                incrementGrade( void );
+        void                decrementGrade( void );
+
+        void                signForm(AForm &form);
+        void                executeForm(AForm const &form) const;
 
         class GradeTooHighException : public std::exception
         {
