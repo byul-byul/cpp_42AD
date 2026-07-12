@@ -28,6 +28,8 @@ class Span
         int longestSpan() const;
 
     private:
+        // Declared but never defined: disables default construction (a Span
+        // without a capacity is meaningless) while still satisfying OCF.
         Span();
 
         unsigned int      _maxSize;

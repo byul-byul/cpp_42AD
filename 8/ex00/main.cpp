@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <iterator>
 #include "easyfind.hpp"
 
 int main()
@@ -36,6 +37,28 @@ int main()
     catch (std::exception const &e)
     {
         std::cout << "list: " << e.what() << std::endl;
+    }
+
+    std::vector<int> dup;
+    dup.push_back(9);
+    dup.push_back(4);
+    dup.push_back(1);
+    dup.push_back(4);
+
+    std::vector<int>::iterator dit = easyfind(dup, 4);
+    std::cout << "first occurrence index: " << std::distance(dup.begin(), dit) << std::endl;
+
+    std::vector<int> const constVec(dup);
+    std::vector<int>::const_iterator cit = easyfind(constVec, 9);
+    std::cout << "found in const vector: " << *cit << std::endl;
+
+    try
+    {
+        easyfind(constVec, 123);
+    }
+    catch (std::exception const &e)
+    {
+        std::cout << "const vector: " << e.what() << std::endl;
     }
 
     return 0;

@@ -43,6 +43,17 @@ int main()
         std::cout << "empty span: " << e.what() << std::endl;
     }
 
+    Span oneNumberSpan = Span(1);
+    oneNumberSpan.addNumber(42);
+    try
+    {
+        oneNumberSpan.longestSpan();
+    }
+    catch (std::exception const &e)
+    {
+        std::cout << "single-element span: " << e.what() << std::endl;
+    }
+
     srand(time(NULL));
     unsigned int const bigSize = 10000;
     Span bigSpan = Span(bigSize);
