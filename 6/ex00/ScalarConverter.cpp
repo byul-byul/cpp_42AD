@@ -5,6 +5,15 @@
 #include <sstream>
 #include <iostream>
 
+/*
+ * Overall strategy: every non-char literal is parsed into a single double
+ * (parseNumeric), then that double is explicitly re-cast into char/int/float
+ * for display. This loses the "parse each literal into its own actual type"
+ * nuance the subject describes, but double has enough mantissa bits to hold
+ * an exact int32 or a faithfully-rounded float, so the displayed digits are
+ * unaffected at the default 6-significant-digit precision std::cout uses.
+ */
+
 /* ------------ small numeric helpers (C++98-safe, no <cmath> isnan/isinf) ------------ */
 
 static bool isNan(double value)
@@ -34,6 +43,8 @@ static bool isCharLiteral(const std::string &literal, char &out)
     return true;
 }
 
+/* Accepts [sign] digits [ '.' digits ] only: no exponent, matching the
+ * subject's "only decimal notation will be used" restriction. */
 static bool isDecimalNumber(const std::string &s)
 {
     std::size_t i = 0;
@@ -97,10 +108,20 @@ static bool outOfIntRange(double value)
         || value < static_cast<double>(std::numeric_limits<int>::min());
 }
 
+/* Converting an out-of-range int to char is only implementation-defined
+ * (not undefined), but relying on that wraparound is asking for trouble
+ * at defense time, so treat it as an overflow like any other type. */
+static bool outOfCharRange(double value)
+{
+    return isNan(value) || isPosInf(value) || isNegInf(value)
+        || value > static_cast<double>(std::numeric_limits<char>::max())
+        || value < static_cast<double>(std::numeric_limits<char>::min());
+}
+
 static void printChar(double value)
 {
     std::cout << "char: ";
-    if (outOfIntRange(value))
+    if (outOfCharRange(value))
         std::cout << "impossible";
     else
     {
@@ -123,6 +144,18 @@ static void printInt(double value)
     std::cout << std::endl;
 }
 
+/* std::ostream switches to scientific notation on its own for large/small
+ * magnitudes (e.g. "1e+08"). Blindly appending ".0" whenever there's no '.'
+ * would turn that into the malformed "1e+08.0", so only pad plain digit
+ * strings that genuinely lack a fractional part. */
+static std::string withTrailingZero(const std::string &formatted)
+{
+    std::string s = formatted;
+    if (s.find_first_of(".eE") == std::string::npos)
+        s += ".0";
+    return s;
+}
+
 static void printFloat(double value)
 {
     std::cout << "float: ";
@@ -140,10 +173,7 @@ static void printFloat(double value)
         float f = static_cast<float>(value);
         std::ostringstream oss;
         oss << f;
-        std::string s = oss.str();
-        if (s.find('.') == std::string::npos)
-            s += ".0";
-        std::cout << s << "f";
+        std::cout << withTrailingZero(oss.str()) << "f";
     }
     std::cout << std::endl;
 }
@@ -161,10 +191,7 @@ static void printDouble(double value)
     {
         std::ostringstream oss;
         oss << value;
-        std::string s = oss.str();
-        if (s.find('.') == std::string::npos)
-            s += ".0";
-        std::cout << s;
+        std::cout << withTrailingZero(oss.str());
     }
     std::cout << std::endl;
 }
