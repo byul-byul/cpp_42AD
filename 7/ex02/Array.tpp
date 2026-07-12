@@ -9,7 +9,10 @@ Array<T>::Array() : _data(NULL), _size(0)
 }
 
 template <typename T>
-Array<T>::Array(std::size_t n) : _data(n ? new T[n]() : NULL), _size(n)
+Array<T>::Array(std::size_t n)
+    // new T[n]() value-initializes every element (zeroes built-in types);
+    // skip the allocation entirely for n == 0 to avoid preventive allocation
+    : _data(n ? new T[n]() : NULL), _size(n)
 {
 }
 
