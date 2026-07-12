@@ -36,6 +36,8 @@ static bool isValidDate(std::string const &date)
 
     static int const daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int maxDay = daysInMonth[month - 1];
+    // Standard Gregorian leap year rule: divisible by 4, except centuries
+    // not divisible by 400 (e.g. 1900 is not leap, 2000 is).
     bool leap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
     if (month == 2 && leap)
         maxDay = 29;
@@ -46,6 +48,10 @@ static bool isValidDate(std::string const &date)
 BitcoinExchange::BitcoinExchange(std::string const &databaseFile)
 {
     loadDatabase(databaseFile);
+}
+
+BitcoinExchange::BitcoinExchange()
+{
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &other) : _rates(other._rates)
@@ -102,6 +108,10 @@ bool BitcoinExchange::getRate(std::string const &date, double &rate) const
     if (_rates.empty())
         return false;
 
+    // upper_bound() gives the first entry strictly greater than `date`.
+    // Stepping back one entry lands on the closest date <= `date` (the
+    // subject requires the lower date, never the upper one). If that step
+    // would go before begin(), no date in the database is old enough.
     std::map<std::string, double>::const_iterator it = _rates.upper_bound(date);
     if (it == _rates.begin())
         return false;

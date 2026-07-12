@@ -1,5 +1,6 @@
 #include <sstream>
 #include <stack>
+#include <vector>
 #include <stdexcept>
 #include <cctype>
 #include "RPN.hpp"
@@ -32,7 +33,10 @@ static bool isOperator(std::string const &token)
 int RPN::evaluate(std::string const &expression)
 {
     std::istringstream iss(expression);
-    std::stack<int> values;
+    // std::stack defaults to a std::deque backend; std::deque is used as one
+    // of the two required containers in ex02, so pin the backend to
+    // std::vector here to keep the two exercises' containers distinct.
+    std::stack<int, std::vector<int> > values;
     std::string token;
 
     while (iss >> token)
